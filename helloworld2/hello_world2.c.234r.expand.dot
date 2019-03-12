@@ -1,0 +1,113 @@
+digraph "helloworld2/hello_world2.c.234r.expand.234r.expand" {
+	overlap=false
+	subgraph cluster_main {
+		style=dashed
+		color=black
+		label="main ()"
+		bb_0 [label=ENTRY fillcolor=white shape=Mdiamond style=filled]
+		bb_2 [label="{8: NOTE_INSN_BASIC_BLOCK\ 2\l\
+|3: reg:SI 117 = unspec:SI\l\
+|4: use reg:SI 117\l\
+|2: NOTE_INSN_FUNCTION_BEG\l\
+|5: reg/f:SI 116 = mem[reg:SI 117 symbol_ref] symbol_ref\l\
+|6: reg/f:SI 118 = mem[reg/f:SI 116]\l\
+|7: mem[reg/f:SI 105 -4] = reg/f:SI 118\l\
+|10: reg:SI 119 = plus: use reg/f:SI 105 use -20\l\
+|11: reg:SI 120 = 0\l\
+|12: mem[reg:SI 119] = reg:SI 120\l\
+|13: mem[reg:SI 119 4] = reg:SI 120\l\
+|14: mem[reg:SI 119 8] = reg:SI 120\l\
+|15: mem[reg:SI 119 11] = unspec:SI\l\
+|16: reg:SI 121 = 72\l\
+|17: reg:QI 122 = subreg:QI ['reg:SI', 121]\l\
+|18: mem[reg/f:SI 105 -20] = reg:QI 122\l\
+|19: reg:SI 123 = 101\l\
+|20: reg:QI 124 = subreg:QI ['reg:SI', 123]\l\
+|21: mem[reg/f:SI 105 -19] = reg:QI 124\l\
+|22: reg:SI 125 = 108\l\
+|23: reg:QI 126 = subreg:QI ['reg:SI', 125]\l\
+|24: mem[reg/f:SI 105 -18] = reg:QI 126\l\
+|25: reg:SI 127 = 108\l\
+|26: reg:QI 128 = subreg:QI ['reg:SI', 127]\l\
+|27: mem[reg/f:SI 105 -17] = reg:QI 128\l\
+|28: reg:SI 129 = 111\l\
+|29: reg:QI 130 = subreg:QI ['reg:SI', 129]\l\
+|30: mem[reg/f:SI 105 -16] = reg:QI 130\l\
+|31: reg:SI 131 = 44\l\
+|32: reg:QI 132 = subreg:QI ['reg:SI', 131]\l\
+|33: mem[reg/f:SI 105 -15] = reg:QI 132\l\
+|34: reg:SI 133 = 32\l\
+|35: reg:QI 134 = subreg:QI ['reg:SI', 133]\l\
+|36: mem[reg/f:SI 105 -14] = reg:QI 134\l\
+|37: reg:SI 135 = 119\l\
+|38: reg:QI 136 = subreg:QI ['reg:SI', 135]\l\
+|39: mem[reg/f:SI 105 -13] = reg:QI 136\l\
+|40: reg:SI 137 = 111\l\
+|41: reg:QI 138 = subreg:QI ['reg:SI', 137]\l\
+|42: mem[reg/f:SI 105 -12] = reg:QI 138\l\
+|43: reg:SI 139 = 114\l\
+|44: reg:QI 140 = subreg:QI ['reg:SI', 139]\l\
+|45: mem[reg/f:SI 105 -11] = reg:QI 140\l\
+|46: reg:SI 141 = 108\l\
+|47: reg:QI 142 = subreg:QI ['reg:SI', 141]\l\
+|48: mem[reg/f:SI 105 -10] = reg:QI 142\l\
+|49: reg:SI 143 = 100\l\
+|50: reg:QI 144 = subreg:QI ['reg:SI', 143]\l\
+|51: mem[reg/f:SI 105 -9] = reg:QI 144\l\
+|52: reg:SI 145 = 46\l\
+|53: reg:QI 146 = subreg:QI ['reg:SI', 145]\l\
+|54: mem[reg/f:SI 105 -8] = reg:QI 146\l\
+|55: reg:SI 147 = 10\l\
+|56: reg:QI 148 = subreg:QI ['reg:SI', 147]\l\
+|57: mem[reg/f:SI 105 -7] = reg:QI 148\l\
+|58: reg:SI 149 = 0\l\
+|59: mem[reg/f:SI 105 -24] = reg:SI 149\l\
+|60: jump: pc = L73}" fillcolor=lightgrey shape=record style=filled]
+		bb_4 [label="{80: L80:\l\
+|62: NOTE_INSN_BASIC_BLOCK\ 4\l\
+|63: reg:SI 150 = plus: use reg/f:SI 105 use -20\l\
+|64: reg:SI 152 = mem[reg/f:SI 105 -24]\l\
+|65: reg/f:SI 151 = plus: use reg:SI 150 use reg:SI 152\l\
+|66: reg:SI 110 = zero_extend:SI\l\
+|67: reg:SI 111 = reg:SI 110\l\
+|68: reg:SI 0 = reg:SI 111\l\
+|69: reg:SI 0 = call: putchar\l\
+|70: reg:SI 154 = mem[reg/f:SI 105 -24]\l\
+|71: reg:SI 153 = plus: use reg:SI 154 use 1\l\
+|72: mem[reg/f:SI 105 -24] = reg:SI 153\l\
+}" fillcolor=lightgrey shape=record style=filled]
+		bb_5 [label="{73: L73:\l\
+|74: NOTE_INSN_BASIC_BLOCK\ 5\l\
+|75: reg:SI 155 = plus: use reg/f:SI 105 use -20\l\
+|76: reg:SI 0 = reg:SI 155\l\
+|78: reg:SI 112 = reg:SI 0\l\
+|79: reg:SI 113 = mem[reg/f:SI 105 -24]\l\
+|81: reg:CC 100 = compare:CC\l\
+|82: conditional jump: pc = L80}" fillcolor=lightgrey shape=record style=filled]
+		bb_6 [label="{83: NOTE_INSN_BASIC_BLOCK\ 6\l\
+|84: reg:SI 114 = 0\l\
+|87: reg:SI 115 = reg:SI 114\l\
+|91: reg/i:SI 0 = reg:SI 115\l\
+|92: reg/f:SI 157 = mem[reg:SI 117 symbol_ref] symbol_ref\l\
+|93: reg:SI 158 = mem[reg/f:SI 105 -4]\l\
+|94: reg:SI 159 = mem[reg/f:SI 157]\l\
+|95: reg:CC 100 = compare:CC\l\
+|96: conditional jump: pc = L99}" fillcolor=lightgrey shape=record style=filled]
+		bb_9 [label="{102: NOTE_INSN_BASIC_BLOCK\ 9\l\
+|97: call: function_name\l\
+}" fillcolor=lightgrey shape=record style=filled]
+		bb_10 [label="{99: L99:\l\
+|103: NOTE_INSN_BASIC_BLOCK\ 10\l\
+|100: use reg/i:SI 0\l\
+}" fillcolor=lightgrey shape=record style=filled]
+		bb_1 [label=EXIT fillcolor=white shape=Mdiamond style=filled]
+		bb_0 -> bb_2 [constraint=true]
+		bb_4 -> bb_5 [constraint=true]
+		bb_5 -> bb_6 [constraint=true]
+		bb_6 -> bb_9 [constraint=true]
+		bb_2 -> bb_5 [constraint=true]
+		bb_5 -> bb_4 [constraint=true]
+		bb_6 -> bb_10 [constraint=true]
+		bb_10 -> bb_1 [constraint=true]
+	}
+}

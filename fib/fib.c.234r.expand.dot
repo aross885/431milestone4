@@ -1,0 +1,52 @@
+digraph "fib/fib.c.234r.expand.234r.expand" {
+	overlap=false
+	subgraph cluster_main {
+		style=dashed
+		color=black
+		label="main ()"
+		bb_0 [label=ENTRY fillcolor=white shape=Mdiamond style=filled]
+		bb_2 [label="{3: NOTE_INSN_BASIC_BLOCK\ 2\l\
+|2: NOTE_INSN_FUNCTION_BEG\l\
+|5: reg:SI 112 = 0\l\
+|6: mem[reg/f:SI 105 -16] = reg:SI 112\l\
+|7: reg:SI 113 = 1\l\
+|8: mem[reg/f:SI 105 -12] = reg:SI 113\l\
+|9: reg:SI 114 = 0\l\
+|10: mem[reg/f:SI 105 -8] = reg:SI 114\l\
+|11: reg:SI 115 = 0\l\
+|12: mem[reg/f:SI 105 -4] = reg:SI 115\l\
+|13: jump: pc = L27}" fillcolor=lightgrey shape=record style=filled]
+		bb_4 [label="{29: L29:\l\
+|15: NOTE_INSN_BASIC_BLOCK\ 4\l\
+|16: reg:SI 117 = mem[reg/f:SI 105 -16]\l\
+|17: reg:SI 118 = mem[reg/f:SI 105 -12]\l\
+|18: reg:SI 116 = plus: use reg:SI 117 use reg:SI 118\l\
+|19: mem[reg/f:SI 105 -8] = reg:SI 116\l\
+|20: reg:SI 119 = mem[reg/f:SI 105 -12]\l\
+|21: mem[reg/f:SI 105 -16] = reg:SI 119\l\
+|22: reg:SI 120 = mem[reg/f:SI 105 -8]\l\
+|23: mem[reg/f:SI 105 -12] = reg:SI 120\l\
+|24: reg:SI 122 = mem[reg/f:SI 105 -4]\l\
+|25: reg:SI 121 = plus: use reg:SI 122 use 1\l\
+|26: mem[reg/f:SI 105 -4] = reg:SI 121\l\
+}" fillcolor=lightgrey shape=record style=filled]
+		bb_5 [label="{27: L27:\l\
+|28: NOTE_INSN_BASIC_BLOCK\ 5\l\
+|30: reg:SI 123 = mem[reg/f:SI 105 -4]\l\
+|31: reg:CC 100 = compare:CC\l\
+|32: conditional jump: pc = L29}" fillcolor=lightgrey shape=record style=filled]
+		bb_6 [label="{33: NOTE_INSN_BASIC_BLOCK\ 6\l\
+|34: reg:SI 110 = mem[reg/f:SI 105 -8]\l\
+|37: reg:SI 111 = reg:SI 110\l\
+|41: reg/i:SI 0 = reg:SI 111\l\
+|42: use reg/i:SI 0\l\
+}" fillcolor=lightgrey shape=record style=filled]
+		bb_1 [label=EXIT fillcolor=white shape=Mdiamond style=filled]
+		bb_0 -> bb_2 [constraint=true]
+		bb_4 -> bb_5 [constraint=true]
+		bb_5 -> bb_6 [constraint=true]
+		bb_2 -> bb_5 [constraint=true]
+		bb_5 -> bb_4 [constraint=true]
+		bb_6 -> bb_1 [constraint=true]
+	}
+}
