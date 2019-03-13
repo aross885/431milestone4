@@ -10,6 +10,8 @@ import liveVariableAnalysis as lva
 import interferenceGraph as ig
 import graphColorizer as gc
 import m3toAssembly as m3a
+import milestone4 as m4
+import LSDAG as ls
 
 
 def addtouses(regnum ,defs, uses):
@@ -176,37 +178,45 @@ def main():
     # minReg = findMinReg(sys.argv[1])
     lookupTable = createLookupTable(maxReg)
 
-    print("STEP 0: Constructing CFG...")
+    #print("STEP 0: Constructing CFG...")
     cfg = constructCFG(sys.argv[1])
-    print("STEP 1: Performing Live Variable Analysis...")
+    #print("STEP 1: Performing Live Variable Analysis...")
     lva.livenessAnalysis(cfg)
-    print("STEP 2: Building Interference Graph...")
+    #print("STEP 2: Building Interference Graph...")
     ifg = ig.buildInterferenceGraph(cfg)
 
-    print("\nInterference Graph")
-    for i in range(len(ifg)):
-        print(ifg[i])
+    #print("\nInterference Graph")
+    #for i in range(len(ifg)):
+        #print(ifg[i])
 
-    print("\nSTEP 3: Coloring Graph...")
+    #print("\nSTEP 3: Coloring Graph...")
     cfg, colors = gc.colorGraph(cfg, ifg)
-    print("\nColors: ")
-    print(colors)
+    #print("\nColors: ")
+    #print(colors)
 
-    print("\nSpill Table")
-    for key in cfg.spillTable.keys():
-        print("Register: {} - Spilled To: {}".format(key, cfg.spillTable[key]))
+    #print("\nSpill Table")
+    #for key in cfg.spillTable.keys():
+        #print("Register: {} - Spilled To: {}".format(key, cfg.spillTable[key]))
 
-    for key in cfg.spillTable.keys():
-        for value in cfg.spillTable[key]:
-            color = colors[value - 101]
-            print("Register: {} - Spilled To: {} Color: {}".format(key, value, color))
+    #for key in cfg.spillTable.keys():
+     #   for value in cfg.spillTable[key]:
+      #      color = colors[value - 101]
+       #     print("Register: {} - Spilled To: {} Color: {}".format(key, value, color))
 
-    for block in cfg.blocks:
-        print(block.bbnum)
-        for insn in block.insns:
-            print("Defs: {} Uses: {}".format(insn.defs, insn.uses))
+    #for block in cfg.blocks:
+        #print(block.bbnum)
+        #for insn in block.insns:
+            #print("Defs: {} Uses: {}".format(insn.defs, insn.uses))
             
     m3a.parseRTLtoAssembly(sys.argv[1], lookupTable, colors, cfg.spillTable)
+
+    LSDAG = m4.create_LSDAG(cfg)
+    
+    for ins in LSDAG.insns:
+        print(ins.defs, ins.uses)
+    for i in range(len(LSDAG.edges)):
+        print(LSDAG.edges[i])
+    
 
 if __name__ == "__main__":
     main()

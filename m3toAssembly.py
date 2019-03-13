@@ -81,7 +81,6 @@ def setRegInsn(rtlFileName, line, lookupTable, mapTable, regColTable,spillTable,
                 print(text2)
                 print("DB: "+ DBtext2)
     elif ('plus' in line[5][2][0] or 'minus' in line[5][2][0] or 'mult' in line[5][2][0]):  
-        print("BINOP")
         arg1 = line[5][2][1][1]
         arg2 = line[5][2][2][1]
         offset1 = lookupTable[arg1] 
@@ -126,32 +125,31 @@ def setRegInsn(rtlFileName, line, lookupTable, mapTable, regColTable,spillTable,
             writeARMInsn(rtlFileName, text)
             DBtext = "ldr r"+ str(arg1)+", [fp, #" + str(offset1) + "] spills to :" + str(spillTable[arg1])    
             spillTable[arg1].pop(0)
-            print(text)
-            print("DB: "+ DBtext )
+            #print(text)
+            #print("DB: "+ DBtext )
         if arg2 in spillTable.keys():
             writeARMInsn(rtlFileName, text2)
             DBtext2 = "ldr r"+ str(arg2)+", [fp, #" + str(offset2) + "] spills to :" + str(spillTable[arg2])
             spillTable[arg2].pop(0)
-            print(text2)
-            print("DB: "+ DBtext2)
+            #print(text2)
+            #print("DB: "+ DBtext2)
         writeARMInsn(rtlFileName, text3)
         used = 1
-        print(text3)
-        print("DB: "+ DBtext3)
+        #print(text3)
+        #print("DB: "+ DBtext3)
         if regnum in spillTable.keys():
             writeARMInsn(rtlFileName, text4)
-            print(text4)
-            print("DB: "+ DBtext4)            
+            #print(text4)
+            #print("DB: "+ DBtext4)            
             spillTable[regnum].pop(0) #pop off the virutal register we used
     elif 'reg' in line[5][2][0]:
-        print("REG")
         if line[5][2][1] in spillTable.keys():
             offset1 = lookupTable[line[5][2][1]]
             text = "ldr r"+ str(access_RCT(regColTable, line[5][2][1], spillTable))+" [fp, #" + str(offset1) + "]"
             DBtext = "ldr r"+ str(line[5][2][1])+" [fp, #" + str(offset1) + "]"
             writeARMInsn(rtlFileName, text)
-            print(text)
-            print("DB: "+ DBtext)            
+            #print(text)
+            #print("DB: "+ DBtext)            
         if line[5][2][1] <= 15:
             text2 = "mov r"+ str(access_RCT(regColTable, regnum, spillTable))+", r"+ str(line[5][2][1])
             DBtext2 = "mov r"+ str(regnum)+", r"+ str(line[5][2][1])
@@ -170,35 +168,35 @@ def setRegInsn(rtlFileName, line, lookupTable, mapTable, regColTable,spillTable,
             used = 1
             spillTable[regnum].pop(0) #pop off the virtual register we used
             writeARMInsn(rtlFileName, text3)
-            print(text3)
-            print("DB: "+ DBtext3)
+            #print(text3)
+            #print("DB: "+ DBtext3)
         
-        print(text2)
-        print("DB: "+ DBtext2)            
+        #print(text2)
+        #print("DB: "+ DBtext2)            
         
         if ("<retval>" in line[5][1]):
             text3 = "str r0, [fp, #" + str(offset) + "]"
             DBtext3 = "str r0, [fp, #" + str(offset) + "]"
             writeARMInsn(rtlFileName, text3)
-            print(text3)
-            print("DB: "+DBtext3)
+            #print(text3)
+            #print("DB: "+DBtext3)
     elif ("compare" in line[5][2][0]):
-        print("COMPARE")
-        print(line[5][2][1])
+        #print("COMPARE")
+        #print(line[5][2][1])
         offset1 = lookupTable[line[5][2][1][1]]
         text = "ldr r"+ str(access_RCT(regColTable, line[5][2][1][1], spillTable))+", [fp, #" + str(offset1) + "]"
         DBtext = "ldr r"+ str(line[5][2][1][1])+", [fp, #" + str(offset1) + "]"
         if line[5][2][1][1] in spillTable.keys():
             writeARMInsn(rtlFileName, text)
             spillTable[line[5][2][1][1]].pop(0)
-            print(text)
-            print("DB: " + DBtext)
+            #print(text)
+            #print("DB: " + DBtext)
         if ("const_int" in line[5][2][2][0]): # if constant
             text2 = "cmp r"+ str(access_RCT(regColTable, line[5][2][1][1], spillTable))+", #" + str(line[5][2][2][1])
             DBtext2 = "cmp r"+ str(line[5][2][1][1])+", #" + str(line[5][2][2][1])
             writeARMInsn(rtlFileName, text2)
-            print(text2)
-            print("DB: " + DBtext2)
+            #print(text2)
+            #print("DB: " + DBtext2)
         else: # else register
             offset2 = lookupTable[line[5][2][2][1]] 
             text2 = "ldr r"+ str(access_RCT(regColTable, line[5][2][2][1], spillTable))+", [fp, #" + str(offset2) + "]"  #ommit spilling str due to peep hole optimization???
@@ -209,10 +207,10 @@ def setRegInsn(rtlFileName, line, lookupTable, mapTable, regColTable,spillTable,
                 writeARMInsn(rtlFileName, text2)
                 spillTable[line[5][2][2][1]].pop(0)
             writeARMInsn(rtlFileName, text3)
-            print(text2)
-            print("DB: " + DBtext2)
-            print(text3)
-            print("DB: " + DBtext3)
+            #print(text2)
+            #print("DB: " + DBtext2)
+            #print(text3)
+            #print("DB: " + DBtext3)
     if prevCallInsn == 1 and used == 1:
         prevCallInsn = 0
         used = 0
@@ -228,7 +226,6 @@ def setRegInsn(rtlFileName, line, lookupTable, mapTable, regColTable,spillTable,
 
 
 def jumpInsn(rtlFileName, line, prevCallInsn):
-    print(line)
     if ("label_ref" in line[5][2][0]):
         # unconditional jump
         if (str(line[5][2][1]) == "main"):
@@ -243,7 +240,7 @@ def jumpInsn(rtlFileName, line, prevCallInsn):
         else:
             text = "b" + condition + " L" + str(line[5][2][2][1])
     writeARMInsn(rtlFileName, text)
-    print(text)
+    #print(text)
     prevCallInsn = 0
     return prevCallInsn
 
@@ -254,7 +251,7 @@ def codeLabel(rtlFileName, line):
         writeCodeLabel(rtlFileName, str(line[1]))
     else:
         writeCodeLabel(rtlFileName, "L" + str(line[1]))
-        print("L" + str(line[1]) + ":")
+        #print("L" + str(line[1]) + ":")
     
 
 
@@ -274,16 +271,16 @@ def setMemInsn(rtlFileName, line, lookupTable, mapTable, regColTable, spillTable
     DBtext2 = "str r"+ str(regToSave)+ " , [sp, # "+ str(lookupTable[regToSave]) + "]"
     writeARMInsn(rtlFileName, text)
     writeARMInsn(rtlFileName, text2)
-    print(text)
-    print("DB: " + DBtext)
-    print(text2)
-    print("DB: " + DBtext2)
+    #print(text)
+    #print("DB: " + DBtext)
+    #print(text2)
+    #print("DB: " + DBtext2)
 
 
     if (text3 != ""):
         writeARMInsn(rtlFileName, text3)
-        print(text3)
-        print("DB: " + DBtext3)
+       # print(text3)
+        #print("DB: " + DBtext3)
     prevCallInsn = 0
     return prevCallInsn
 
@@ -296,7 +293,7 @@ def callInsn(rtlFileName, line, prevCallInsn):
     writeARMInsn(rtlFileName, text)
     #writeARMInsn(rtlFileName, popregs)
     #print(line[1])
-    print(text)
+    #print(text)
     prevCallInsn = 1
     return prevCallInsn
 
@@ -317,7 +314,7 @@ def parseRTLtoAssembly(rtlFileName, lookupTable, regColTable, spillTable):
             createStack(rtlFileName, len(regColTable) - 4) 
         lineCount += 1
         if type(line) == list:       
-            print(line[1])
+            #print(line[1])
             if line[0] == 'insn':
                 if line[5][0] == 'set':
                     if 'reg' in line[5][1][0]:
